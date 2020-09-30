@@ -119,37 +119,37 @@ function Home() {
             <tr>
               <th scope="row">1</th>
               <td>BTCUSD</td>
-              <td id="BTCUSDDailyChange"></td>
-              <td id="BTCUSDVolume"></td>
-              <td id="BTCUSDLastPrice"></td>
+              <td id="BTCUSDDailyChange">0</td>
+              <td id="BTCUSDVolume">0</td>
+              <td id="BTCUSDLastPrice">0</td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>BTCEUR</td>
-              <td id="BTCEURDailyChange"></td>
-              <td id="BTCEURVolume"></td>
-              <td id="BTCEURLastPrice"></td>
+              <td id="BTCEURDailyChange">0</td>
+              <td id="BTCEURVolume">0</td>
+              <td id="BTCEURLastPrice">0</td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>ETHUSD</td>
-              <td id="ETHUSDDailyChange"></td>
-              <td id="ETHUSDVolume"></td>
-              <td id="ETHUSDLastPrice"></td>
+              <td id="ETHUSDDailyChange">0</td>
+              <td id="ETHUSDVolume">0</td>
+              <td id="ETHUSDLastPrice">0</td>
             </tr>
             <tr>
               <th scope="row">4</th>
               <td>ETHEUR</td>
-              <td id="ETHEURDailyChange"></td>
-              <td id="ETHEURVolume"></td>
-              <td id="ETHEURLastPrice"></td>
+              <td id="ETHEURDailyChange">0</td>
+              <td id="ETHEURVolume">0</td>
+              <td id="ETHEURLastPrice">0</td>
             </tr>
             <tr>
               <th scope="row">5</th>
               <td>EOSUSD</td>
-              <td id="EOSUSDDailyChange"></td>
-              <td id="EOSUSDVolume"></td>
-              <td id="EOSUSDLastPrice"></td>
+              <td id="EOSUSDDailyChange">0</td>
+              <td id="EOSUSDVolume">0</td>
+              <td id="EOSUSDLastPrice">0</td>
             </tr>
           </tbody>
         </table>

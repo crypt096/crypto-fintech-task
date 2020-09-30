@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  NavLink,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import Home from "../Home/Home";
 import Profile from "../Profile/Profile";
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const simulateLogIn = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
     <>
       <Router>
@@ -25,24 +37,31 @@ function Navbar() {
                 Navbar
               </a>
               <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li className="nav-item active">
-                  <Link className="nav-link" to="/">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/home">
                     Home
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/profile">
+                  <NavLink className="nav-link" to="/profile">
                     Profile
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
-              <button className="btn btn-primary">This is just a button</button>
+              {!isLoggedIn ? (
+                <button className="btn btn-primary" onClick={simulateLogIn}>
+                  Login
+                </button>
+              ) : null}
             </div>
           </nav>
         </div>
 
         <Switch>
           <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/home">
             <Home />
           </Route>
           <Route path="/profile">

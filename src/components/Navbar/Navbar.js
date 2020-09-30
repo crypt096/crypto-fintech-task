@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 
 import {
   NavLink,
@@ -8,8 +8,8 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import Home from "../Home/Home";
 import Profile from "../Profile/Profile";
+const Home = React.lazy(() => import("../Home/Home"));
 
 function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,7 +62,9 @@ function Navbar() {
             <Redirect to="/home" />
           </Route>
           <Route exact path="/home">
-            <Home />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Home />
+            </Suspense>
           </Route>
           <Route path="/profile">
             <Profile />

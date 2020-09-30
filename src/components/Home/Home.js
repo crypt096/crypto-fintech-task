@@ -9,60 +9,50 @@ function Home() {
   const EOSUSDSocket = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
 
   // Socket onmessage, multiple useEffect,one for each socket
-  useEffect(() => {
-    BTCUSDSocket.onmessage = (BTCUSD) => {
-      let response = Array.from(JSON.parse(BTCUSD.data))[1];
-      if (response !== undefined && response !== "hb") {
-        document.getElementById("BTCUSDDailyChange").innerHTML = response[4];
-        document.getElementById("BTCUSDVolume").innerHTML = response[7];
-        document.getElementById("BTCUSDLastPrice").innerHTML = response[6];
-      }
-    };
-  }, [BTCUSDSocket.onmessage]);
+  BTCUSDSocket.onmessage = (BTCUSD) => {
+    let response = Array.from(JSON.parse(BTCUSD.data))[1];
+    if (response !== undefined && response !== "hb") {
+      document.getElementById("BTCUSDDailyChange").innerHTML = response[4];
+      document.getElementById("BTCUSDVolume").innerHTML = response[7];
+      document.getElementById("BTCUSDLastPrice").innerHTML = response[6];
+    }
+  };
 
-  useEffect(() => {
-    BTCEURSocket.onmessage = (BTCEUR) => {
-      let response = Array.from(JSON.parse(BTCEUR.data))[1];
-      if (response !== undefined && response !== "hb") {
-        document.getElementById("BTCEURDailyChange").innerHTML = response[4];
-        document.getElementById("BTCEURVolume").innerHTML = response[7];
-        document.getElementById("BTCEURLastPrice").innerHTML = response[6];
-      }
-    };
-  }, [BTCEURSocket.onmessage]);
+  BTCEURSocket.onmessage = (BTCEUR) => {
+    let response = Array.from(JSON.parse(BTCEUR.data))[1];
+    if (response !== undefined && response !== "hb") {
+      document.getElementById("BTCEURDailyChange").innerHTML = response[4];
+      document.getElementById("BTCEURVolume").innerHTML = response[7];
+      document.getElementById("BTCEURLastPrice").innerHTML = response[6];
+    }
+  };
 
-  useEffect(() => {
-    ETHUSDSocket.onmessage = (ETHUSD) => {
-      let response = Array.from(JSON.parse(ETHUSD.data))[1];
-      if (response !== undefined && response !== "hb") {
-        document.getElementById("ETHUSDDailyChange").innerHTML = response[4];
-        document.getElementById("ETHUSDVolume").innerHTML = response[7];
-        document.getElementById("ETHUSDLastPrice").innerHTML = response[6];
-      }
-    };
-  }, [ETHUSDSocket.onmessage]);
+  ETHUSDSocket.onmessage = (ETHUSD) => {
+    let response = Array.from(JSON.parse(ETHUSD.data))[1];
+    if (response !== undefined && response !== "hb") {
+      document.getElementById("ETHUSDDailyChange").innerHTML = response[4];
+      document.getElementById("ETHUSDVolume").innerHTML = response[7];
+      document.getElementById("ETHUSDLastPrice").innerHTML = response[6];
+    }
+  };
 
-  useEffect(() => {
-    ETHEURSocket.onmessage = (ETHEUR) => {
-      let response = Array.from(JSON.parse(ETHEUR.data))[1];
-      if (response !== undefined && response !== "hb") {
-        document.getElementById("ETHEURDailyChange").innerHTML = response[4];
-        document.getElementById("ETHEURVolume").innerHTML = response[7];
-        document.getElementById("ETHEURLastPrice").innerHTML = response[6];
-      }
-    };
-  }, [ETHEURSocket.onmessage]);
+  ETHEURSocket.onmessage = (ETHEUR) => {
+    let response = Array.from(JSON.parse(ETHEUR.data))[1];
+    if (response !== undefined && response !== "hb") {
+      document.getElementById("ETHEURDailyChange").innerHTML = response[4];
+      document.getElementById("ETHEURVolume").innerHTML = response[7];
+      document.getElementById("ETHEURLastPrice").innerHTML = response[6];
+    }
+  };
 
-  useEffect(() => {
-    EOSUSDSocket.onmessage = (EOSUSD) => {
-      let response = Array.from(JSON.parse(EOSUSD.data))[1];
-      if (response !== undefined && response !== "hb") {
-        document.getElementById("EOSUSDDailyChange").innerHTML = response[4];
-        document.getElementById("EOSUSDVolume").innerHTML = response[7];
-        document.getElementById("EOSUSDLastPrice").innerHTML = response[6];
-      }
-    };
-  }, [EOSUSDSocket.onmessage]);
+  EOSUSDSocket.onmessage = (EOSUSD) => {
+    let response = Array.from(JSON.parse(EOSUSD.data))[1];
+    if (response !== undefined && response !== "hb") {
+      document.getElementById("EOSUSDDailyChange").innerHTML = response[4];
+      document.getElementById("EOSUSDVolume").innerHTML = response[7];
+      document.getElementById("EOSUSDLastPrice").innerHTML = response[6];
+    }
+  };
 
   // Socket Config
   const BTCUSD = JSON.stringify({
@@ -95,12 +85,25 @@ function Home() {
     symbol: "tEOSUSD",
   });
 
-  // Socket onopen
-  BTCUSDSocket.onopen = () => BTCUSDSocket.send(BTCUSD);
-  BTCEURSocket.onopen = () => BTCEURSocket.send(BTCEUR);
-  ETHUSDSocket.onopen = () => ETHUSDSocket.send(ETHUSD);
-  ETHEURSocket.onopen = () => ETHEURSocket.send(ETHEUR);
-  EOSUSDSocket.onopen = () => EOSUSDSocket.send(EOSUSD);
+  useEffect(() => {
+    // Socket onopen
+    BTCUSDSocket.onopen = () => BTCUSDSocket.send(BTCUSD);
+    BTCEURSocket.onopen = () => BTCEURSocket.send(BTCEUR);
+    ETHUSDSocket.onopen = () => ETHUSDSocket.send(ETHUSD);
+    ETHEURSocket.onopen = () => ETHEURSocket.send(ETHEUR);
+    EOSUSDSocket.onopen = () => EOSUSDSocket.send(EOSUSD);
+  }, [
+    BTCUSDSocket,
+    BTCEURSocket,
+    ETHUSDSocket,
+    ETHEURSocket,
+    EOSUSDSocket,
+    BTCUSD,
+    BTCEUR,
+    ETHUSD,
+    ETHEUR,
+    EOSUSD,
+  ]);
 
   return (
     <>

@@ -7,7 +7,8 @@ function Home() {
   const ETHUSDSocket = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
   const ETHEURSocket = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
   const EOSUSDSocket = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
-  // Socket onmessage
+
+  // Socket onmessage, multiple useEffect,one for each socket
   useEffect(() => {
     BTCUSDSocket.onmessage = (BTCUSD) => {
       let response = Array.from(JSON.parse(BTCUSD.data))[1];
@@ -19,21 +20,49 @@ function Home() {
     };
   }, [BTCUSDSocket.onmessage]);
 
-  // BTCEURSocket.onmessage = (BTCEUR) => {
-  //   console.log(`I am BTCEUR response: ${JSON.parse(BTCEUR.data)}`);
-  // };
+  useEffect(() => {
+    BTCEURSocket.onmessage = (BTCEUR) => {
+      let response = Array.from(JSON.parse(BTCEUR.data))[1];
+      if (response !== undefined && response !== "hb") {
+        document.getElementById("BTCEURDailyChange").innerHTML = response[4];
+        document.getElementById("BTCEURVolume").innerHTML = response[7];
+        document.getElementById("BTCEURLastPrice").innerHTML = response[6];
+      }
+    };
+  }, [BTCEURSocket.onmessage]);
 
-  // ETHUSDSocket.onmessage = (ETHUSD) => {
-  //   console.log(`I am ETHUSD response: ${JSON.parse(ETHUSD.data)}`);
-  // };
+  useEffect(() => {
+    ETHUSDSocket.onmessage = (ETHUSD) => {
+      let response = Array.from(JSON.parse(ETHUSD.data))[1];
+      if (response !== undefined && response !== "hb") {
+        document.getElementById("ETHUSDDailyChange").innerHTML = response[4];
+        document.getElementById("ETHUSDVolume").innerHTML = response[7];
+        document.getElementById("ETHUSDLastPrice").innerHTML = response[6];
+      }
+    };
+  }, [ETHUSDSocket.onmessage]);
 
-  // ETHEURSocket.onmessage = (ETHEUR) => {
-  //   console.log(`I am ETHEUR response: ${JSON.parse(ETHEUR.data)}`);
-  // };
+  useEffect(() => {
+    ETHEURSocket.onmessage = (ETHEUR) => {
+      let response = Array.from(JSON.parse(ETHEUR.data))[1];
+      if (response !== undefined && response !== "hb") {
+        document.getElementById("ETHEURDailyChange").innerHTML = response[4];
+        document.getElementById("ETHEURVolume").innerHTML = response[7];
+        document.getElementById("ETHEURLastPrice").innerHTML = response[6];
+      }
+    };
+  }, [ETHEURSocket.onmessage]);
 
-  // EOSUSDSocket.onmessage = (EOSUSD) => {
-  //   console.log(`I am EOSUSD response: ${JSON.parse(EOSUSD.data)}`);
-  // };
+  useEffect(() => {
+    EOSUSDSocket.onmessage = (EOSUSD) => {
+      let response = Array.from(JSON.parse(EOSUSD.data))[1];
+      if (response !== undefined && response !== "hb") {
+        document.getElementById("EOSUSDDailyChange").innerHTML = response[4];
+        document.getElementById("EOSUSDVolume").innerHTML = response[7];
+        document.getElementById("EOSUSDLastPrice").innerHTML = response[6];
+      }
+    };
+  }, [EOSUSDSocket.onmessage]);
 
   // Socket Config
   const BTCUSD = JSON.stringify({
@@ -96,31 +125,31 @@ function Home() {
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>@mdo</td>
+              <td>BTCEUR</td>
+              <td id="BTCEURDailyChange"></td>
+              <td id="BTCEURVolume"></td>
+              <td id="BTCEURLastPrice"></td>
             </tr>
             <tr>
               <th scope="row">3</th>
-              <td>Larry the Bird</td>
-              <td>just a test</td>
-              <td>@twitter</td>
-              <td>@mdo</td>
+              <td>ETHUSD</td>
+              <td id="ETHUSDDailyChange"></td>
+              <td id="ETHUSDVolume"></td>
+              <td id="ETHUSDLastPrice"></td>
             </tr>
             <tr>
               <th scope="row">4</th>
-              <td>Larry the Bird</td>
-              <td>just a test</td>
-              <td>@twitter</td>
-              <td>@mdo</td>
+              <td>ETHEUR</td>
+              <td id="ETHEURDailyChange"></td>
+              <td id="ETHEURVolume"></td>
+              <td id="ETHEURLastPrice"></td>
             </tr>
             <tr>
               <th scope="row">5</th>
-              <td>Larry the Bird</td>
-              <td>just a test</td>
-              <td>@twitter</td>
-              <td>@mdo</td>
+              <td>EOSUSD</td>
+              <td id="EOSUSDDailyChange"></td>
+              <td id="EOSUSDVolume"></td>
+              <td id="EOSUSDLastPrice"></td>
             </tr>
           </tbody>
         </table>
